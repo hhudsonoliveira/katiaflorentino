@@ -1,0 +1,708 @@
+<title>Proposta Escola Amor que Restaura</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Proposta para Kátia Florentino: área do aluno com aulas gravadas e painel de gestão para a Escola Amor que Restaura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400..700&display=swap">
+<style>
+/* Layout: coluna de leitura de 760px (a proposta); a área do aluno e o painel abrem para 1180px como telas do produto, ligadas entre si */
+:root{
+  --bg:#FBF7F8; --surface:#FFFFFF; --sunken:#F3ECEE; --ink:#2A1420; --muted:#6E5862; --line:#E8DCE0;
+  --wine:#8E1F45; --wine-soft:#F6E3EA; --on-wine:#FFFFFF;
+  --gold:#C08A1E; --gold-soft:#FAEFD6; --gold-ink:#7A5408;
+  --ok:#1F7A52; --ok-soft:#DDF1E6; --warn:#A35F00; --warn-soft:#FBEACF; --bad:#B4372F; --bad-soft:#F8DEDB;
+  --screen:#2A1420; --on-screen:#FBEFF3;
+  --shadow:rgba(42,20,32,.20);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#160C11; --surface:#21131A; --sunken:#1A0F15; --ink:#F3E6EB; --muted:#B79FAA; --line:#3A2430;
+  --wine:#F07FA5; --wine-soft:#3B1726; --on-wine:#160C11;
+  --gold:#E7B65A; --gold-soft:#3A2A0E; --gold-ink:#F1CB80;
+  --ok:#4BC08A; --ok-soft:#10301F; --warn:#EFA33E; --warn-soft:#38270E; --bad:#EE7B73; --bad-soft:#3A1917;
+  --screen:#0C0609; --on-screen:#F3E6EB;
+  --shadow:rgba(0,0,0,.55);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#160C11; --surface:#21131A; --sunken:#1A0F15; --ink:#F3E6EB; --muted:#B79FAA; --line:#3A2430;
+  --wine:#F07FA5; --wine-soft:#3B1726; --on-wine:#160C11;
+  --gold:#E7B65A; --gold-soft:#3A2A0E; --gold-ink:#F1CB80;
+  --ok:#4BC08A; --ok-soft:#10301F; --warn:#EFA33E; --warn-soft:#38270E; --bad:#EE7B73; --bad-soft:#3A1917;
+  --screen:#0C0609; --on-screen:#F3E6EB;
+  --shadow:rgba(0,0,0,.55);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{display:flex;flex-direction:column;gap:88px;padding-block:56px 72px}
+.col{width:100%;max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+.wide{width:100%;max-width:1180px;margin-inline:auto;display:flex;flex-direction:column;gap:24px}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(2.3rem,6.2vw,3.8rem);font-weight:750}
+h2{font-size:clamp(1.65rem,4vw,2.35rem);font-weight:680}
+h3{font-size:1.2rem;font-weight:650;letter-spacing:-.005em}
+p{margin:0;max-width:65ch}
+a{color:var(--wine)}
+.eyebrow{font-family:var(--mono);font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--wine)}
+.muted{color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Hero */
+.hero{gap:24px}
+.hl{color:var(--wine);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:.11em;text-underline-offset:.12em}
+.lead{font-size:1.18rem}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.meta b{color:var(--ink);font-weight:600}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pillar{border-top:3px solid var(--wine);padding-top:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pillar b{font-family:var(--display);font-size:1.15rem;font-weight:700}
+.pillar span{font-size:.9rem;color:var(--muted);line-height:1.4}
+.pillar:nth-child(2){border-color:var(--gold)}
+.pillar:nth-child(3){border-color:var(--ok)}
+@media (max-width:560px){.pillars{grid-template-columns:1fr}}
+
+/* Diagnóstico */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.fact{background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.fact strong{font-family:var(--display);font-weight:700;font-size:2.1rem;line-height:1;color:var(--wine)}
+.fact span{font-size:.88rem;color:var(--muted);line-height:1.4}
+@media (max-width:560px){.facts{grid-template-columns:1fr}}
+.tips{border:1px dashed var(--gold);background:var(--gold-soft);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.tips h3{font-size:1.02rem}
+.tips ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:.96rem}
+
+/* Entregas */
+.deliver{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:210px minmax(0,1fr);gap:20px;padding-block:24px;border-bottom:1px solid var(--line)}
+.item>div{min-width:0;display:flex;flex-direction:column;gap:8px}
+.item ul{margin:0;padding-left:18px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.item .tag{align-self:flex-start}
+@media (max-width:620px){.item{grid-template-columns:1fr;gap:8px}}
+
+/* Moldura das demos */
+.frame{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 22px 44px -30px var(--shadow)}
+.frame-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--sunken);font-size:.86rem;color:var(--muted)}
+.frame-bar b{color:var(--ink);font-weight:600}
+.tag{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold-ink);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:999px;line-height:1.5;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.gold{background:var(--gold-soft);color:var(--gold-ink)}
+.pill.wine{background:var(--wine-soft);color:var(--wine)}
+.btn{font:inherit;font-weight:600;font-size:.95rem;background:var(--wine);color:var(--on-wine);border:1px solid var(--wine);border-radius:10px;padding:10px 18px;cursor:pointer}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:not(:disabled):hover{border-color:var(--wine)}
+.btn-sm{font-size:.82rem;padding:5px 10px;border-radius:8px}
+
+/* Área do aluno */
+.aluno{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:0}
+@media (max-width:860px){.aluno{grid-template-columns:1fr}}
+.stage{padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.course-head{display:flex;justify-content:space-between;align-items:flex-end;gap:8px 16px;flex-wrap:wrap}
+.course-head>div{min-width:0;display:flex;flex-direction:column;gap:2px}
+.course-head small{color:var(--muted);font-size:.85rem}
+.cprog{display:flex;align-items:center;gap:10px;min-width:180px;flex:0 1 240px}
+.bar{flex:1;height:8px;background:var(--sunken);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--wine);border-radius:999px;transition:width .35s ease}
+.bar.full i{background:var(--ok)}
+.video{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--screen);color:var(--on-screen);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:16px 18px}
+.video::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 85% 10%,color-mix(in srgb,var(--wine) 45%,transparent),transparent 60%),radial-gradient(80% 70% at 10% 100%,color-mix(in srgb,var(--gold) 28%,transparent),transparent 60%);pointer-events:none}
+.v-top,.v-bot{position:relative;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.v-top span{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.v-title{position:relative;font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,3vw,1.7rem);line-height:1.15;max-width:22ch}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;border:0;background:var(--on-screen);color:var(--screen);cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:1}
+.play svg{width:24px;height:24px;margin-left:3px}
+.play.playing svg{margin-left:0}
+.vtrack{flex:1;height:5px;background:color-mix(in srgb,var(--on-screen) 25%,transparent);border-radius:999px;overflow:hidden;min-width:80px}
+.vtrack i{display:block;height:100%;background:var(--gold);width:0}
+.v-bot .mono{font-size:.8rem;opacity:.85}
+.lesson-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.lesson-actions .hint{font-size:.88rem;color:var(--muted)}
+.mat{display:flex;gap:10px;align-items:center;background:var(--sunken);border-radius:10px;padding:10px 12px;font-size:.92rem;flex-wrap:wrap}
+.mat .doc{font-family:var(--mono);font-size:.7rem;background:var(--wine-soft);color:var(--wine);padding:3px 7px;border-radius:6px;font-weight:500}
+.cert{border:1.5px solid var(--gold);background:var(--gold-soft);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;text-align:center;align-items:center}
+.cert .eyebrow{color:var(--gold-ink)}
+.cert b{font-family:var(--display);font-size:1.4rem;line-height:1.2}
+.cert small{color:var(--muted);font-size:.85rem}
+.cert.locked{border-style:dashed;border-color:var(--line);background:var(--sunken)}
+.cert.locked .eyebrow{color:var(--muted)}
+.cert.new{animation:glow 1.6s ease-out}
+@keyframes glow{0%{box-shadow:0 0 0 0 var(--gold)}30%{box-shadow:0 0 0 6px var(--gold)}100%{box-shadow:0 0 0 0 transparent}}
+.side{border-left:1px solid var(--line);background:var(--sunken);padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (max-width:860px){.side{border-left:0;border-top:1px solid var(--line)}}
+.mod h4{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 4px 6px}
+.mod ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.les{font:inherit;width:100%;text-align:left;display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 8px;border-radius:9px;border:1px solid transparent;background:transparent;color:var(--ink);cursor:pointer;font-size:.92rem;line-height:1.3}
+.les:hover{background:var(--surface)}
+.les.cur{background:var(--surface);border-color:var(--wine)}
+.les .ck{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:.7rem;color:var(--on-wine);background:var(--surface)}
+.les.done .ck{background:var(--ok);border-color:var(--ok)}
+.les .dur{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+
+/* Painel */
+.painel{padding:20px;display:flex;flex-direction:column;gap:16px}
+.p-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.p-top label{font-size:.9rem;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.p-top select{font:inherit;font-size:.92rem;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kpi{background:var(--sunken);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi b{font-family:var(--display);font-size:1.7rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.82rem;color:var(--muted);line-height:1.3}
+@media (max-width:700px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.alert{display:flex;gap:6px 14px;align-items:baseline;flex-wrap:wrap;background:var(--warn-soft);border-radius:12px;padding:10px 14px;font-size:.92rem}
+.alert strong{color:var(--warn)}
+.p-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px}
+@media (max-width:900px){.p-grid{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.box h4{font-family:var(--display);font-size:1.02rem;font-weight:650;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}
+.box h4 small{font-family:var(--body);font-weight:400;font-size:.8rem;color:var(--muted)}
+.chart svg{width:100%;height:auto;display:block}
+.chart .lbl{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.chart .val{fill:var(--ink);font-family:var(--mono);font-size:11px;font-weight:500}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .b{fill:var(--wine-soft);stroke:var(--wine);stroke-width:1}
+.chart .b.last{fill:var(--wine)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th{text-align:left;font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 8px 8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tr.me td{background:var(--gold-soft)}
+td .tp{display:flex;align-items:center;gap:8px;min-width:120px}
+td .tp .bar{height:6px}
+td .mono{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.co{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:center}
+@media (max-width:700px){.co{grid-template-columns:1fr}}
+.co>div{min-width:0;display:flex;flex-direction:column;gap:6px}
+.co .big{font-family:var(--display);font-size:2rem;font-weight:700;line-height:1}
+.co .bar{height:10px}
+.p-note{font-size:.82rem;color:var(--muted)}
+
+/* Etapas */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column}
+.steps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding-block:12px;counter-increment:s}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--wine);width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--surface)}
+.steps b{display:block}
+.steps span{color:var(--muted)}
+
+/* Material */
+.check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px}
+.check li{position:relative;padding-left:26px}
+.check li::before{content:"";position:absolute;left:0;top:.42em;width:14px;height:14px;border:1.5px solid var(--wine);border-radius:4px}
+@media (max-width:560px){.check{grid-template-columns:1fr}}
+.rec{background:var(--sunken);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.rec ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+
+/* Investimento */
+.price{background:var(--wine);color:var(--on-wine);border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:22px}
+.price .eyebrow{color:var(--on-wine);opacity:.8}
+.price-main{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.price-main .big{font-family:var(--display);font-weight:750;font-size:clamp(2.8rem,10vw,4.4rem);line-height:1;letter-spacing:-.02em}
+.price-main .or{font-size:1.05rem;opacity:.92}
+.price ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px}
+.price li{padding-left:22px;position:relative}
+.price li::before{content:"✓";position:absolute;left:0;font-weight:700}
+@media (max-width:560px){.price{padding:24px 20px}.price ul{grid-template-columns:1fr}}
+.price-note{border-top:1px solid color-mix(in srgb,var(--on-wine) 30%,transparent);padding-top:18px;display:flex;flex-direction:column;gap:8px;font-size:.95rem}
+.host{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.host-rows{display:flex;flex-direction:column}
+.host-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.host-row:last-child{border-bottom:0;font-weight:600}
+.host-row .mono{white-space:nowrap;text-align:right}
+.fine{font-size:.78rem;color:var(--muted);line-height:1.45}
+.calc{background:var(--gold-soft);border-radius:14px;padding:18px 20px}
+.calc p{max-width:none}
+.extra{border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px;background:var(--surface)}
+.extra-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.extra-head strong{font-family:var(--display);font-weight:700;font-size:1.35rem}
+.sign{font-size:.9rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.sign .links{display:flex;flex-wrap:wrap;gap:6px 20px}
+.sign a{font-weight:600}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  @page{size:A4;margin:14mm 12mm}
+  :root{--bg:#FFFFFF}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none!important;transition:none!important}
+  body{font-size:15px;padding:0}
+  main{gap:44px;padding-block:0}
+  #aluno,#painel,section[aria-labelledby="t-como"],section[aria-labelledby="t-inv"]{break-before:page}
+  .frame{box-shadow:none}
+  .facts,.tips,.item,.kpis,.box,.co,.price,.host,.calc,.extra,.steps li,.cert{break-inside:avoid}
+  h2{break-after:avoid}
+}
+</style>
+
+<main>
+
+<header class="col hero">
+  <p class="eyebrow">Proposta comercial · Área do aluno e painel de gestão</p>
+  <h1>Seus cursos disponíveis <span class="hl">a qualquer hora</span>, para alunos de qualquer país.</h1>
+  <p class="lead">Uma área do aluno dentro do seu site, onde cada pessoa entra com login e senha, assiste às aulas gravadas no próprio ritmo, baixa o material e recebe o certificado. E um painel só seu, para ver quem se matriculou, quem está avançando e quem precisa de um incentivo para continuar.</p>
+  <div class="pillars" aria-label="Como o projeto segue o método 3P">
+    <div class="pillar"><b>Princípio</b><span>O conteúdo que você já ensina, organizado em módulos e aulas</span></div>
+    <div class="pillar"><b>Prática</b><span>O aluno assiste, faz os exercícios e marca o que concluiu</span></div>
+    <div class="pillar"><b>Propósito</b><span>Você acompanha cada jornada até o certificado</span></div>
+  </div>
+  <div class="meta">
+    <span>Para <b>Kátia Florentino</b></span>
+    <span>Escola Amor que Restaura</span>
+    <span>Emitida em 14/10/2026 · válida por 48h, até 16/10/2026</span>
+  </div>
+</header>
+
+<section class="col" aria-labelledby="t-hoje">
+  <p class="eyebrow">O que eu vi no seu site</p>
+  <h2 id="t-hoje">Hoje, cada turma depende da sua agenda.</h2>
+  <div class="facts">
+    <div class="fact"><strong class="mono">4</strong><span>encontros ao vivo de 2 horas por curso, com “datas e horários a combinar” pelo WhatsApp</span></div>
+    <div class="fact"><strong class="mono">9</strong><span>países de língua portuguesa na sua rede internacional, cada um com seu fuso horário</span></div>
+    <div class="fact"><strong class="mono">7</strong><span>ferramentas terapêuticas e e-books à venda, entregues um a um</span></div>
+  </div>
+  <p>O site já apresenta muito bem a Escola, o Método de Cristo e os 3P. Os cursos “Verdade que Liberta” e “De onde vem sua dor?” custam R$ 60 cada, e a inscrição é feita pelo WhatsApp. Depois, cada turma precisa de quatro encontros marcados com você. Isso limita quantas pessoas você consegue atender, e quem está em Portugal, Angola ou Moçambique precisa encaixar o horário de Salvador.</p>
+  <p>Com as aulas gravadas, você ensina uma vez e o conteúdo atende quantos alunos chegarem, de dia ou de madrugada, em qualquer país. Os encontros ao vivo podem continuar, agora como um momento especial da formação, e não como a única forma de aprender.</p>
+  <p>O mesmo vale para a Mentoria de Implementadores Licenciados, com seus três níveis, e para o PIEE nas empresas. Na nova NR-1, a empresa precisa mostrar que os colaboradores fizeram as ações de saúde emocional. Um relatório de quem concluiu cada aula ajuda a empresa a comprovar isso no PGR.</p>
+  <p>Um ponto técnico: o site atual roda numa versão antiga do PHP (5.6), que não recebe atualizações de segurança há anos. Ele funciona bem como vitrine, mas não é o lugar certo para guardar senhas e dados de alunos. Por isso a área do aluno fica num endereço próprio, ligado ao seu site, como <b>aluno.escolaamorquerestaura.com.br</b>, com segurança atual e dados protegidos como pede a LGPD.</p>
+  <div class="tips">
+    <h3>Duas melhorias que você pode fazer hoje, sem custo</h3>
+    <ol>
+      <li>Mude o novo Instagram (@escola.amorquerestaura) para conta profissional e escolha uma categoria como “Escola” ou “Educação”. Hoje ele está como conta pessoal, e a conta profissional mostra as estatísticas de cada post.</li>
+      <li>Fixe três posts no topo do perfil: um apresentando a Escola, um com os cursos e um sobre a Formação de Implementadores. Quem chega pela primeira vez entende tudo em segundos.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="col" aria-labelledby="t-recebe">
+  <p class="eyebrow">O que você recebe</p>
+  <h2 id="t-recebe">Duas ferramentas que trabalham juntas</h2>
+  <p class="muted">O aluno assiste e avança na área do aluno. Cada aula concluída aparece no seu painel na mesma hora.</p>
+  <div class="deliver">
+    <div class="item">
+      <h3>Área do aluno</h3>
+      <div>
+        <p>A sala de aula virtual da Escola, feita para funcionar bem no celular, que é por onde a maioria dos alunos vai assistir.</p>
+        <ul>
+          <li>Login com e-mail e senha, e recuperação de senha sem precisar falar com você</li>
+          <li>Cada curso dividido em módulos e aulas, com vídeo, descrição e material em PDF</li>
+          <li>Barra de progresso: o aluno vê o que já concluiu e continua de onde parou</li>
+          <li>Certificado de participação liberado automaticamente ao concluir todas as aulas</li>
+          <li>Vídeos protegidos: só toca para quem está logado e não pode ser baixado nem compartilhado por link</li>
+          <li>Espaço para os e-books e ferramentas que o aluno comprou, todos num lugar só</li>
+          <li>Botão “Entrar na área do aluno” no seu site atual</li>
+        </ul>
+      </div>
+    </div>
+    <div class="item">
+      <h3>Painel da Kátia</h3>
+      <div>
+        <p>O seu dashboard, com login, para cuidar da Escola sem depender de planilha nem de memória.</p>
+        <ul>
+          <li>Números do mês: alunos ativos, novas matrículas, receita e taxa de conclusão</li>
+          <li>Gráfico de matrículas por mês e por curso</li>
+          <li>Lista de alunos com o progresso de cada um, a última vez que entrou e WhatsApp a um clique</li>
+          <li>Alerta de aluno parado: quem não entra há mais de 14 dias aparece em destaque, para você mandar uma palavra de incentivo</li>
+          <li>Você mesma cadastra cursos, sobe aulas e PDFs e libera o acesso de cada aluno</li>
+          <li>Turmas de empresa: relatório de conclusão por colaborador, para o PIEE e a NR-1</li>
+        </ul>
+      </div>
+    </div>
+    <div class="item">
+      <h3>Bônus inclusos</h3>
+      <div>
+        <span class="tag">Sem custo extra</span>
+        <ul>
+          <li>Os seus 2 cursos atuais cadastrados e organizados na plataforma, com as aulas que você enviar</li>
+          <li>Correção do link do Instagram no site, que hoje leva a um perfil que não existe mais</li>
+          <li>Guia rápido de gravação: luz, áudio e enquadramento usando o celular</li>
+          <li>Uma chamada para te mostrar o painel funcionando, passo a passo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wide" id="aluno" aria-labelledby="t-aluno">
+  <div class="col">
+    <p class="eyebrow">Experimente</p>
+    <h2 id="t-aluno">É assim que o seu aluno vai estudar</h2>
+    <p class="muted">Dê play numa aula ou marque como concluída. Termine as aulas para ver o certificado ser liberado. Cada aula que você concluir aqui aparece no painel logo abaixo. A divisão das aulas é um exemplo; você define a sua.</p>
+  </div>
+  <div class="frame">
+    <div class="frame-bar"><b>Escola Amor que Restaura · Área do aluno</b><span class="tag">Demonstração</span></div>
+    <div class="aluno">
+      <div class="stage">
+        <div class="course-head">
+          <div><small>Formações 3P</small><h3>Verdade que Liberta</h3></div>
+          <div class="cprog"><div class="bar" id="cBar"><i></i></div><span class="mono" id="cPct">0%</span></div>
+        </div>
+        <div class="video" id="video">
+          <div class="v-top"><span id="vMod">Módulo</span><span id="vNum">Aula</span></div>
+          <button type="button" class="play" id="play" aria-label="Assistir aula"></button>
+          <div class="v-title" id="vTitle">Aula</div>
+          <div class="v-bot"><div class="vtrack"><i id="vTrack"></i></div><span class="mono" id="vTime">00:00</span></div>
+        </div>
+        <div class="lesson-actions">
+          <button type="button" class="btn" id="mark">Marcar como concluída</button>
+          <button type="button" class="btn btn-ghost" id="next">Próxima aula</button>
+          <span class="hint" id="lHint"></span>
+        </div>
+        <div class="mat"><span class="doc">PDF</span><span id="matName">Material da aula</span></div>
+      </div>
+      <aside class="side">
+        <div id="mods"></div>
+        <div class="cert locked" id="cert" aria-live="polite"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="wide" id="painel" aria-labelledby="t-painel">
+  <div class="col">
+    <p class="eyebrow">Seu painel</p>
+    <h2 id="t-painel">Cada aluno com o seu progresso. Ninguém fica para trás.</h2>
+    <p class="muted">Filtre por curso e veja os números mudarem. A linha destacada é o aluno da demonstração acima. Nomes e números ilustrativos.</p>
+  </div>
+  <div class="frame">
+    <div class="frame-bar"><b>Painel da Kátia · Visão geral</b><span class="tag">Demonstração</span></div>
+    <div class="painel">
+      <div class="p-top">
+        <h3>Outubro de 2026</h3>
+        <label for="fCurso">Curso
+          <select id="fCurso">
+            <option value="all">Todos os cursos</option>
+            <option value="vql">Verdade que Liberta</option>
+            <option value="dor">De onde vem sua dor?</option>
+            <option value="m1">Mentoria Nível 1</option>
+            <option value="piee">PIEE · Empresas</option>
+          </select>
+        </label>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="alert" id="alert" hidden></div>
+      <div class="p-grid">
+        <div class="box chart">
+          <h4>Matrículas por mês <small>maio a outubro</small></h4>
+          <div id="chart"></div>
+        </div>
+        <div class="box">
+          <h4>Alunos <small id="tCount"></small></h4>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Aluno</th><th>Curso</th><th>Progresso</th><th>Último acesso</th><th>Situação</th></tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="co" id="co"></div>
+      <p class="p-note">No sistema de verdade, o painel abre no celular, com login e senha. Cada aluno tem botão de WhatsApp, histórico de aulas e o certificado emitido.</p>
+    </div>
+  </div>
+</section>
+
+<section class="col" aria-labelledby="t-como">
+  <p class="eyebrow">Como funciona</p>
+  <h2 id="t-como">Do sim à área do aluno no ar em 10 a 15 dias úteis</h2>
+  <ol class="steps">
+    <li><div><b>Aprovação</b><span>Você aprova a proposta, escolhe a forma de pagamento e assinamos o contrato de prestação de serviço.</span></div></li>
+    <li><div><b>Envio do material</b><span>Você manda o que está na lista abaixo. Os vídeos podem chegar aos poucos; o prazo começa a contar com o primeiro curso completo.</span></div></li>
+    <li><div><b>Construção, em 10 a 15 dias úteis</b><span>Área do aluno, painel, certificado e os seus cursos cadastrados.</span></div></li>
+    <li><div><b>Revisão e publicação</b><span>Você testa como aluna e como administradora, pede os ajustes, eu te mostro o painel numa chamada e a área do aluno vai ao ar.</span></div></li>
+    <li><div><b>30 dias de suporte</b><span>Qualquer ajuste no primeiro mês está incluso.</span></div></li>
+  </ol>
+</section>
+
+<section class="col" aria-labelledby="t-material">
+  <p class="eyebrow">O que preciso de você</p>
+  <h2 id="t-material">Material para começar</h2>
+  <ul class="check">
+    <li>Os vídeos das aulas de pelo menos um curso</li>
+    <li>Como você quer dividir cada curso em módulos e aulas</li>
+    <li>Os PDFs e exercícios de cada aula</li>
+    <li>Seu logo e a sua assinatura para o certificado</li>
+    <li>A lista dos alunos atuais, se quiser dar acesso a eles</li>
+    <li>Os e-books que vão ficar disponíveis na área do aluno</li>
+  </ul>
+  <div class="rec">
+    <h3>Ainda não gravou? Dá para começar com o celular</h3>
+    <ul>
+      <li>Grave com o celular deitado, na altura dos olhos, de frente para uma janela</li>
+      <li>Use um microfone de lapela simples. O áudio importa mais que a imagem</li>
+      <li>Aulas de 10 a 20 minutos funcionam melhor que encontros de 2 horas inteiros</li>
+      <li>Se você já tem gravações dos encontros ao vivo, elas também servem. Eu ajudo a dividir em aulas</li>
+    </ul>
+  </div>
+</section>
+
+<section class="col" aria-labelledby="t-inv">
+  <p class="eyebrow">Investimento</p>
+  <h2 id="t-inv">Projeto completo</h2>
+  <div class="price">
+    <p class="eyebrow">Área do aluno + painel + bônus</p>
+    <div class="price-main">
+      <span class="big">R$ 1.500</span>
+      <span class="or">ou em até 12x no cartão (com a taxa do cartão)</span>
+    </div>
+    <ul>
+      <li>Área do aluno com login</li>
+      <li>Aulas em vídeo protegidas</li>
+      <li>Progresso e certificado automático</li>
+      <li>Painel com números e gráficos</li>
+      <li>Alerta de aluno parado</li>
+      <li>Relatório de turmas de empresa</li>
+      <li>Seus 2 cursos cadastrados</li>
+      <li>30 dias de suporte para ajustes</li>
+    </ul>
+    <div class="price-note">
+      <p><b>Prazo:</b> 10 a 15 dias úteis depois do recebimento do material.</p>
+      <p><b>Hospedagem dos vídeos e do banco de dados:</b> não estão inclusos no valor. São contratados no seu nome e pagos diretamente por você. Eu cuido de toda a configuração.</p>
+    </div>
+  </div>
+
+  <div class="host">
+    <h3>Quanto custa manter a área do aluno no ar</h3>
+    <p class="muted">O domínio e a hospedagem do site você já tem. Os custos novos são estes:</p>
+    <div class="host-rows">
+      <div class="host-row"><span>Hospedagem dos vídeos (Bunny Stream), cobrança pelo uso</span><span class="mono">a partir de US$ 1/mês</span></div>
+      <div class="host-row"><span>Login e banco de dados dos alunos</span><span class="mono">grátis no início</span></div>
+      <div class="host-row"><span>Estimativa para os primeiros meses</span><span class="mono">menos de R$ 50/mês</span></div>
+    </div>
+    <p class="fine">O serviço de vídeo cobra pelo espaço ocupado e pelo que os alunos assistem, em dólar. Com poucas dezenas de alunos, a conta fica em poucos dólares por mês. Quando a Escola passar de algumas centenas de alunos ativos, o banco de dados pode pedir o plano pago, de cerca de US$ 25/mês. Os valores são dos provedores e podem mudar; eu te mostro o consumo real todo mês.</p>
+  </div>
+
+  <div class="calc">
+    <p><b>A conta é simples.</b> Com os cursos a R$ 60, o projeto se paga com 25 matrículas. E diferente das turmas ao vivo, cada novo aluno não toma nenhuma hora da sua agenda. Um curso gravado hoje continua ensinando enquanto você atende, viaja ou descansa. Se a Formação de Implementadores ou um contrato de PIEE com uma empresa usar a plataforma, o retorno chega ainda mais rápido.</p>
+  </div>
+
+  <div class="extra">
+    <div class="extra-head"><h3>Manutenção mensal (opcional)</h3><strong>R$ 250/mês</strong></div>
+    <p class="muted">Começa depois dos 30 dias de suporte e só se você quiser. Cobre ajustes e melhorias na área do aluno e no painel, backup dos dados dos alunos, acompanhamento dos custos de vídeo e ajuda para subir cursos novos.</p>
+  </div>
+
+  <div class="extra">
+    <div class="extra-head"><h3>Quando quiser ir além</h3><span class="tag">Próximo passo</span></div>
+    <p class="muted">Dá para ligar a área do aluno a um pagamento online com Pix e cartão. O aluno compra pelo site e recebe o acesso na hora, sem você precisar liberar à mão. Também dá para ter uma atendente de IA no WhatsApp que responde dúvidas sobre os cursos a qualquer hora. Fiz uma assim para a agência Bazcar: a Cecília qualifica os contatos, agenda reuniões e tira dúvidas pelo WhatsApp oficial. Orçamento à parte, quando fizer sentido para você.</p>
+  </div>
+</section>
+
+<section class="col" aria-labelledby="t-cta">
+  <h2 id="t-cta">Vamos abrir as portas da Escola para o mundo?</h2>
+  <p>Esta proposta vale por 48 horas, até sexta-feira, 16/10/2026. Para começar, é só responder com o seu “sim”. Depois você escolhe a forma de pagamento e assinamos o contrato de prestação de serviço. Em seguida eu mando a lista de material, e em poucas semanas seus alunos de qualquer país vão estar assistindo às aulas e chegando organizados no seu painel.</p>
+  <footer class="sign">
+    <p>Hudson Oliveira · Livson Tecnologia · Proposta preparada para Kátia Florentino em 14/10/2026</p>
+    <p class="links">
+      <a href="https://livsontecnologia.com.br/" target="_blank" rel="noopener">livsontecnologia.com.br</a>
+      <a href="https://www.instagram.com/hhudson.oliveira/" target="_blank" rel="noopener">Instagram @hhudson.oliveira</a>
+    </p>
+  </footer>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var BRL0 = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>';
+  var PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>';
+
+  /* ---------- Área do aluno ---------- */
+  var MODS = [
+    {nome:'Módulo 1 · Identidade', aulas:[
+      {t:'Quem eu sou de verdade', d:'14:20', pdf:'Exercício: minha identidade'},
+      {t:'As mentiras emocionais que eu aprendi', d:'17:45', pdf:'Lista: mentiras e verdades'}]},
+    {nome:'Módulo 2 · Crenças limitantes', aulas:[
+      {t:'De onde vêm as minhas crenças', d:'15:10', pdf:'Mapa das crenças'},
+      {t:'Rompendo ciclos que se repetem', d:'18:30', pdf:'Exercício: meus ciclos'}]},
+    {nome:'Módulo 3 · Emoções ocultas', aulas:[
+      {t:'Reconhecendo o que eu não sinto', d:'13:55', pdf:'Diário das emoções'},
+      {t:'Como o passado fala no presente', d:'16:40', pdf:'Linha do tempo terapêutica'}]},
+    {nome:'Módulo 4 · Renovação da mente', aulas:[
+      {t:'A verdade que liberta', d:'19:05', pdf:'Declarações de verdade'},
+      {t:'Vivendo com propósito', d:'12:50', pdf:'Plano de 21 dias'}]}
+  ];
+  var LES = [];
+  MODS.forEach(function(m, mi){ m.aulas.forEach(function(a){ a.mod = mi; a.done = false; LES.push(a); }); });
+  LES[0].done = true; LES[1].done = true; LES[2].done = true;
+  var cur = 3, timer = null, tick = 0, certShown = false;
+
+  function doneCount(){ return LES.filter(function(a){ return a.done; }).length; }
+  function secs(d){ var p = d.split(':'); return (+p[0])*60 + (+p[1]); }
+  function mmss(s){ s = Math.floor(s); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } $('play').classList.remove('playing'); $('play').innerHTML = PLAY; $('play').setAttribute('aria-label','Assistir aula'); }
+
+  function renderVideo(){
+    var a = LES[cur];
+    $('vMod').textContent = MODS[a.mod].nome;
+    $('vNum').textContent = 'Aula '+(cur+1)+' de '+LES.length;
+    $('vTitle').textContent = a.t;
+    var total = secs(a.d), p = (timer || !a.done) ? tick/100 : 1;
+    $('vTrack').style.width = (p*100)+'%';
+    $('vTime').textContent = mmss(total*p)+' / '+a.d;
+    $('matName').textContent = a.pdf+'.pdf';
+    $('mark').textContent = a.done ? 'Aula concluída ✓' : 'Marcar como concluída';
+    $('mark').disabled = a.done;
+    $('next').disabled = cur >= LES.length-1;
+    $('lHint').textContent = a.done ? 'Esta aula já conta no seu progresso.' : '';
+  }
+  function renderMods(){
+    var h = '', k = 0;
+    MODS.forEach(function(m){
+      h += '<div class="mod"><h4>'+esc(m.nome)+'</h4><ul>';
+      m.aulas.forEach(function(a){
+        var i = k++;
+        h += '<li><button type="button" class="les'+(a.done?' done':'')+(i===cur?' cur':'')+'" data-i="'+i+'" aria-current="'+(i===cur)+'">'+
+             '<span class="ck" aria-hidden="true">'+(a.done?'✓':'')+'</span><span>'+esc(a.t)+'</span><span class="dur">'+a.d+'</span></button></li>';
+      });
+      h += '</ul></div>';
+    });
+    $('mods').innerHTML = h;
+  }
+  function renderProgress(){
+    var d = doneCount(), pct = Math.round(d/LES.length*100);
+    $('cPct').textContent = pct+'%';
+    $('cBar').firstElementChild.style.width = pct+'%';
+    $('cBar').classList.toggle('full', d===LES.length);
+    var c = $('cert');
+    if(d===LES.length){
+      c.className = 'cert'+(certShown?'':' new'); certShown = true;
+      c.innerHTML = '<p class="eyebrow">Certificado liberado</p><b>Verdade que Liberta</b><small>Certificado de participação · 8 aulas · emitido em 14/10/2026<br>Assinado por Kátia Florentino</small><button type="button" class="btn btn-sm">Baixar certificado</button>';
+    } else {
+      certShown = false;
+      c.className = 'cert locked';
+      c.innerHTML = '<p class="eyebrow">Certificado</p><small>Conclua as '+LES.length+' aulas para liberar o seu certificado. Faltam '+(LES.length-d)+'.</small>';
+    }
+  }
+  function renderAluno(){ renderVideo(); renderMods(); renderProgress(); renderPainel(); }
+
+  function complete(){
+    var a = LES[cur];
+    if(a.done) return;
+    a.done = true; tick = 100; stop();
+    me.prog = doneCount(); me.ultimo = 0;
+    renderAluno();
+  }
+  $('play').addEventListener('click', function(){
+    if(timer){ stop(); renderVideo(); return; }
+    if(tick >= 100) tick = 0;
+    this.classList.add('playing'); this.innerHTML = PAUSE; this.setAttribute('aria-label','Pausar aula');
+    timer = setInterval(function(){
+      tick += 4;
+      if(tick >= 100){
+        if(LES[cur].done){ tick = 100; stop(); renderVideo(); }
+        else complete();
+        return;
+      }
+      renderVideo();
+    }, 120);
+    renderVideo();
+  });
+  $('mark').addEventListener('click', function(){ complete(); $('next').focus(); });
+  $('next').addEventListener('click', function(){ if(cur < LES.length-1){ stop(); cur++; tick = 0; renderAluno(); } });
+  $('mods').addEventListener('click', function(e){
+    var b = e.target.closest('.les'); if(!b) return;
+    stop(); cur = +b.getAttribute('data-i'); tick = 0; renderAluno();
+    var nb = document.querySelector('.les[data-i="'+cur+'"]'); if(nb) nb.focus();
+  });
+
+  /* ---------- Painel ---------- */
+  var CURSOS = {
+    vql: {nome:'Verdade que Liberta', aulas:8, preco:60},
+    dor: {nome:'De onde vem sua dor?', aulas:6, preco:60},
+    m1:  {nome:'Mentoria Nível 1', aulas:10, preco:0},
+    piee:{nome:'PIEE · Empresas', aulas:6, preco:0}
+  };
+  var me = {nome:'Você (demonstração)', curso:'vql', prog:3, ultimo:0, pais:'Brasil', me:true};
+  var ALUNOS = [
+    me,
+    {nome:'Simone S.',   curso:'m1',  prog:7,  ultimo:1,  pais:'Brasil'},
+    {nome:'Ana Paula R.',curso:'vql', prog:8,  ultimo:3,  pais:'Brasil'},
+    {nome:'Lúcia M.',    curso:'vql', prog:2,  ultimo:19, pais:'Portugal'},
+    {nome:'Esperança N.',curso:'dor', prog:5,  ultimo:2,  pais:'Angola'},
+    {nome:'Carlos A.',   curso:'dor', prog:1,  ultimo:16, pais:'Brasil'},
+    {nome:'Fátima J.',   curso:'vql', prog:6,  ultimo:0,  pais:'Moçambique'},
+    {nome:'Rosângela T.',curso:'m1',  prog:3,  ultimo:22, pais:'Brasil'},
+    {nome:'Marta D.',    curso:'dor', prog:6,  ultimo:5,  pais:'Cabo Verde'},
+    {nome:'Joana L.',    curso:'piee',prog:6,  ultimo:1,  pais:'Brasil'},
+    {nome:'Ricardo P.',  curso:'piee',prog:4,  ultimo:4,  pais:'Brasil'},
+    {nome:'Tatiane F.',  curso:'piee',prog:2,  ultimo:9,  pais:'Brasil'}
+  ];
+  var MESES = ['Mai','Jun','Jul','Ago','Set','Out'];
+  var MAT = {vql:[0,0,0,0,6,14], dor:[0,0,0,0,4,9], m1:[2,3,2,4,3,5], piee:[0,0,0,0,0,12]};
+
+  function status(a){
+    var tot = CURSOS[a.curso].aulas;
+    if(a.prog >= tot) return {k:'ok', t:'Concluiu'};
+    if(a.ultimo >= 14) return {k:'warn', t:'Parado'};
+    return {k:'wine', t:'Estudando'};
+  }
+  function quando(d){ return d===0 ? 'hoje' : (d===1 ? 'ontem' : 'há '+d+' dias'); }
+  function filtro(){ return $('fCurso').value; }
+  function lista(){ var f = filtro(); return ALUNOS.filter(function(a){ return f==='all' || a.curso===f; }); }
+
+  function renderKpis(L){
+    var f = filtro();
+    var ativos = L.filter(function(a){ return a.ultimo < 14; }).length;
+    var concl = L.filter(function(a){ return a.prog >= CURSOS[a.curso].aulas; }).length;
+    var keys = f==='all' ? Object.keys(MAT) : [f];
+    var novas = keys.reduce(function(s,k){ return s + MAT[k][5]; }, 0);
+    var receita = keys.reduce(function(s,k){ return s + MAT[k][5]*CURSOS[k].preco; }, 0);
+    $('kpis').innerHTML =
+      '<div class="kpi"><b>'+ativos+'</b><span>alunos ativos nos últimos 14 dias</span></div>'+
+      '<div class="kpi"><b>'+novas+'</b><span>matrículas em outubro</span></div>'+
+      '<div class="kpi"><b>'+(receita ? BRL0.format(receita) : '—')+'</b><span>'+(receita ? 'em cursos no mês' : 'mentoria e empresas têm contrato próprio')+'</span></div>'+
+      '<div class="kpi"><b>'+(L.length ? Math.round(concl/L.length*100) : 0)+'%</b><span>concluíram o curso ('+concl+' certificado'+(concl===1?'':'s')+')</span></div>';
+  }
+  function renderAlert(L){
+    var p = L.filter(function(a){ return status(a).k==='warn'; }), el = $('alert');
+    el.hidden = !p.length;
+    el.innerHTML = p.length ? '<strong>Precisam de incentivo</strong>' + p.map(function(a){
+      return '<span>'+esc(a.nome)+' ('+esc(a.pais)+') não entra '+quando(a.ultimo)+' · aula '+a.prog+' de '+CURSOS[a.curso].aulas+'</span>';
+    }).join('') : '';
+  }
+  function renderChart(){
+    var f = filtro(), keys = f==='all' ? Object.keys(MAT) : [f];
+    var vals = MESES.map(function(_, i){ return keys.reduce(function(s,k){ return s + MAT[k][i]; }, 0); });
+    var max = Math.max.apply(null, vals), top = Math.max(5, Math.ceil(max/5)*5);
+    var W = 360, H = 210, L0 = 28, B = 180, T = 22, bw = 34, step = (W - L0 - 8)/vals.length;
+    var y = function(v){ return B - (v/top)*(B - T); };
+    var s = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Matrículas por mês: '+MESES.map(function(m,i){return m+' '+vals[i];}).join(', ')+'">';
+    [0, top/2, top].forEach(function(g){ s += '<line class="grid" x1="'+L0+'" x2="'+(W-4)+'" y1="'+y(g)+'" y2="'+y(g)+'"/><text class="lbl" x="'+(L0-6)+'" y="'+(y(g)+4)+'" text-anchor="end">'+g+'</text>'; });
+    vals.forEach(function(v, i){
+      var x = L0 + step*i + (step-bw)/2, h = B - y(v);
+      s += '<rect class="b'+(i===vals.length-1?' last':'')+'" x="'+x+'" y="'+y(v)+'" width="'+bw+'" height="'+Math.max(h,0)+'" rx="4"/>';
+      s += '<text class="val" x="'+(x+bw/2)+'" y="'+(y(v)-6)+'" text-anchor="middle">'+v+'</text>';
+      s += '<text class="lbl" x="'+(x+bw/2)+'" y="'+(B+18)+'" text-anchor="middle">'+MESES[i]+'</text>';
+    });
+    $('chart').innerHTML = s + '</svg>';
+  }
+  function renderTable(L){
+    $('tCount').textContent = L.length+' aluno'+(L.length===1?'':'s');
+    $('tbody').innerHTML = L.map(function(a){
+      var tot = CURSOS[a.curso].aulas, st = status(a), pct = Math.round(Math.min(a.prog,tot)/tot*100);
+      return '<tr'+(a.me?' class="me"':'')+'><td><b>'+esc(a.nome)+'</b><br><span class="mono">'+esc(a.pais)+'</span></td><td>'+esc(CURSOS[a.curso].nome)+'</td>'+
+        '<td><div class="tp"><div class="bar'+(pct===100?' full':'')+'"><i style="width:'+pct+'%"></i></div><span class="mono">'+Math.min(a.prog,tot)+'/'+tot+'</span></div></td>'+
+        '<td><span class="mono">'+quando(a.ultimo)+'</span></td><td><span class="pill '+st.k+'">'+st.t+'</span></td></tr>';
+    }).join('');
+  }
+  function renderCo(){
+    var colab = 12, concl = 9, pct = Math.round(concl/colab*100);
+    $('co').innerHTML = '<div><p class="eyebrow">Turma de empresa · PIEE</p><h4>Empresa Exemplo Ltda · relatório para a NR-1</h4>'+
+      '<p class="muted" style="font-size:.9rem">Lista de quem concluiu cada ação de saúde emocional, com data, para a empresa anexar ao PGR.</p></div>'+
+      '<div><span class="big mono">'+concl+' de '+colab+'</span><div class="bar'+(pct===100?' full':'')+'"><i style="width:'+pct+'%"></i></div><span class="muted" style="font-size:.85rem">colaboradores concluíram as 6 aulas</span>'+
+      '<button type="button" class="btn btn-ghost btn-sm" style="align-self:flex-start">Exportar relatório</button></div>';
+  }
+  function renderPainel(){ var L = lista(); renderKpis(L); renderAlert(L); renderChart(); renderTable(L); renderCo(); }
+  $('fCurso').addEventListener('change', renderPainel);
+
+  renderAluno();
+})();
+</script>
